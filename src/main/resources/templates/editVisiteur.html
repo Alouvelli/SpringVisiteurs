@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Modification visiteur</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div layout:fragment = "content1">
+        <div class="col-md-6 offset-3" >
+            <div class="card">
+                <div class="card-header m-md-auto">FORMULAIRE DE MODIFICATION D'UN VISITEUR</div>
+                <div class="card-body">
+                    <form method="post" th:action="@{save}">
+                        <div>
+                            <label for="id" class="form-label">ID</label>
+                            <input id="id" class="form-control" type="text" name="id" th:value="${visiteur.id}" readonly>
+                        </div>
+                        <div>
+                            <label for="nom" class="form-label">Nom</label>
+                            <input id="nom" class="form-control" type="text" name="nom" th:field="${visiteur.nom}">
+                            <span class="text-danger" th:errors="${visiteur.nom}"></span>
+                        </div>
+
+                        <div>
+                            <label for="prenom" class="form-label">Prénom</label>
+                            <input id="prenom" class="form-control" type="text" name="prenom" th:field="${visiteur.prenom}">
+                            <span class="text-danger" th:errors="${visiteur.prenom}"></span>
+                        </div>
+
+                        <div>
+                            <label for="telephone" class="form-label">Numéro de téléphone</label>
+                            <input id="telephone" class="form-control" type="text" name="telephone" th:field="${visiteur.telephone}">
+                            <span class="text-danger" th:errors="${visiteur.telephone}"></span>
+                        </div>
+
+                        <div>
+                            <label for="mail" class="form-label">Email</label>
+                            <input id="mail" class="form-control" type="text" name="mail" th:field="${visiteur.mail}">
+                            <span class="text-danger" th:errors="${visiteur.mail}"></span>
+                        </div>
+
+                        <div>
+                            <label for="sexe" class="form-label">Sexe</label>
+                            <select class="dropdown-menu-dark" th:field = "*{sexes}" id="sexe">
+                                <option value="0">Sexe</option>
+                                <option th:each="sexe : ${sexes}"
+                                        th:value="${sexe.id}"
+                                        th:text="${sexe.sexe}">
+                                </option>
+                            </select>
+                            <span class="text-danger" th:errors="${visiteur.sexe}"></span>
+                        </div>
+
+                        <div>
+                            <label for="date" class="form-label">Date</label>
+                            <input id="date" class="form-control" type="date" name="date" th:field  ="${visiteur.date}">
+                            <span class="text-danger" th:errors="${visiteur.date}"></span>
+                        </div>
+
+                        <div>
+                            <label for="departement" class="form-label">Departement</label>
+                            <select class="dropdown-menu-dark" th:field="*{departements}"  id="departement">
+                                <option value="">Select departement</option>
+                                <option th:each="departement : ${departements}"
+                                        th:value="${departement.id}"
+                                        th:text="${departement.departement}">
+                                </option>
+                            </select>
+                            <span class="text-danger" th:errors="${visiteur.departement}"></span>
+                        </div>
+
+                        <div>
+                            <label for="filiere" class="form-label">Filière</label>
+                            <select class="dropdown-menu-dark" th:field = "*{filieres}" id="filiere">
+                                <option value="">Select filiere</option>
+                                <option th:each="filiere : ${filieres}"
+                                        th:value="${filiere.id}"
+                                        th:text="${filiere.filiere}">
+                                </option>
+                                <span class="text-danger" th:errors="${visiteur.filiere}"></span>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="connaissance" class="form-label">Connaissance d'ISI</label>
+                            <select class="dropdown-menu-dark" th:field = "*{connaissances}" id="connaissance">
+                                <option value="">Select connaissance</option>
+                                <option th:each="connaissance : ${connaissances}"
+                                        th:value="${connaissance.id}"
+                                        th:text="${connaissance.connaissance}">
+                                </option>
+                            </select>
+                            <span class="text-danger" th:errors="${visiteur.connaissance}"></span>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
